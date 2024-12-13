@@ -40,9 +40,10 @@ if uploaded_file is not None:
         st.error("La columna 'Customer ID' es obligatoria en los datos. Por favor, agrégala.")
     else:
         # Guardar identificadores
-        customer_ids = new_data["Customer ID"]
+        customer_ids = new_data["Customer ID", "City", "Zip Code", "Latitude", "Longitude", "Churn Reason", "Churn Category"]
 
         # Eliminar columnas irrelevantes excepto 'Customer ID'
+        #id_columns = ["Customer ID", "City", "Zip Code", "Latitude", "Longitude", "Churn Reason", "Churn Category"]
         id_columns = ["Customer ID", "City", "Zip Code", "Latitude", "Longitude", "Churn Reason", "Churn Category"]
         new_data = new_data.drop(columns=id_columns, errors="ignore")
 
@@ -74,4 +75,4 @@ if uploaded_file is not None:
         st.success("Resultados subidos exitosamente a Google Sheets.")
 
         # Enlace para acceder a la hoja de cálculo
-        st.write(f"[Abrir Google Sheet](https://docs.google.com/spreadsheets/d/190SePJxAYEyfjbMa-EEx-eYY0Hihi8GmKUZHzk5SOX8/edit?usp=sharing)")
+       st.write(f"[Abrir Google Sheet](https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID})")
