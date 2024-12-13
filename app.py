@@ -13,7 +13,7 @@ credentials = Credentials.from_service_account_info(credentials_dict)
 gc = gspread.authorize(credentials)
 
 # ID de tu Google Sheet
-SPREADSHEET_ID = "tu_spreadsheet_id_aqui"  # Reemplaza con el ID de tu Google Sheet
+SPREADSHEET_ID = "190SePJxAYEyfjbMa-EEx-eYY0Hihi8GmKUZHzk5SOX8" 
 
 # Cargar el modelo entrenado
 import pickle
