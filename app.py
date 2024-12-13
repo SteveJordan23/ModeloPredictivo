@@ -71,10 +71,7 @@ if uploaded_file is not None:
         predictions = model.predict(new_data)
 
         # Crear un DataFrame con los resultados
-        results = pd.DataFrame({
-            "Customer ID": customer_ids,
-            "Prediction": predictions
-        })
+        results = pd.DataFrame
         st.write("Resultados de las Predicciones")
         st.write(results)
 
