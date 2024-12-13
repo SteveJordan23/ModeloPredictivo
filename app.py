@@ -20,8 +20,8 @@ if credentials.expired and credentials.refresh_token:
     credentials.refresh(Request())
 
 # Autenticación con Google Sheets
-import gspread
 gc = gspread.authorize(credentials)
+
 
 
 # ID de tu Google Sheet
