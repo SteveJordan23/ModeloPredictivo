@@ -1,7 +1,17 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import pickle
+import gspread
+from google.oauth2.service_account import Credentials
+
+# Configuración de Google Sheets
+SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+CREDENTIALS_FILE = "credentials.json"  # Archivo de credenciales de servicio de Google Cloud
+SPREADSHEET_ID = "tu_spreadsheet_id_aqui"  # Reemplaza con el ID de tu Google Sheet
+
+# Autenticación de Google Sheets
+credentials = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
+gc = gspread.authorize(credentials)
 
 # Cargar el modelo entrenado
 with open("modelo_entrenado.pkl", "rb") as model_file:
@@ -45,19 +55,20 @@ if uploaded_file is not None:
         # Realizar predicciones
         predictions = model.predict(new_data)
 
-        # Mostrar resultados
-        st.header("Resultados de las Predicciones")
+        # Crear un DataFrame con los resultados
         results = pd.DataFrame({
             "Customer ID": customer_ids,
             "Prediction": predictions
         })
+        st.write("Resultados de las Predicciones")
         st.write(results)
 
-        # Descargar resultados
-        csv = results.to_csv(index=False)
-        st.download_button(
-            label="Descargar Predicciones",
-            data=csv,
-            file_name="predictions_with_ids.csv",
-            mime="text/csv"
-        )
+        # Subir resultados a Google Sheets
+        st.header("Subiendo los resultados a Google Sheets...")
+        sh = gc.open_by_key(SPREADSHEET_ID)
+        worksheet = sh.sheet1  # Usa la primera hoja
+        worksheet.update([results.columns.values.tolist()] + results.values.tolist())
+        st.success("Resultados subidos exitosamente a Google Sheets.")
+
+        # Enlace para acceder a la hoja de cálculo
+        st.write(f"[Abrir Google Sheet](https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID})")
