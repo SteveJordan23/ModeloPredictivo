@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 import gspread
 from google.oauth2.service_account import Credentials
-from oauth2client.service_account import ServiceAccountCredentials
-import gspread
+import pickle
 
 # Acceder a las credenciales desde Streamlit Secrets Manager
 credentials_dict = st.secrets["google_service_account"]
@@ -15,10 +14,9 @@ credentials = Credentials.from_service_account_info(credentials_dict)
 gc = gspread.authorize(credentials)
 
 # ID de tu Google Sheet
-SPREADSHEET_ID = "190SePJxAYEyfjbMa-EEx-eYY0Hihi8GmKUZHzk5SOX8" 
+SPREADSHEET_ID = "190SePJxAYEyfjbMa-EEx-eYY0Hihi8GmKUZHzk5SOX8"
 
 # Cargar el modelo entrenado
-import pickle
 with open("modelo_entrenado.pkl", "rb") as model_file:
     saved_data = pickle.load(model_file)
     model = saved_data["model"]
