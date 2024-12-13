@@ -1,8 +1,10 @@
 import streamlit as st
 import pandas as pd
 import gspread
-from google.oauth2.service_account import Credentials
 import pickle
+from google.auth.transport.requests import Request
+from google.oauth2.service_account import Credentials
+import streamlit as st
 
 # Acceder a las credenciales desde Streamlit Secrets Manager
 credentials_dict = st.secrets["google_service_account"]
@@ -10,7 +12,12 @@ credentials_dict = st.secrets["google_service_account"]
 # Crear credenciales a partir del diccionario
 credentials = Credentials.from_service_account_info(credentials_dict)
 
+# Verificar si las credenciales son válidas, si no, renovarlas
+if credentials.expired and credentials.refresh_token:
+    credentials.refresh(Request())
+
 # Autenticación con Google Sheets
+import gspread
 gc = gspread.authorize(credentials)
 
 # ID de tu Google Sheet
