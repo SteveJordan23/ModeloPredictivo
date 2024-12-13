@@ -74,4 +74,4 @@ if uploaded_file is not None:
         st.success("Resultados subidos exitosamente a Google Sheets.")
 
         # Enlace para acceder a la hoja de cálculo
-        st.write(f"[Abrir Google Sheet](https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID})")
+        st.write(f"[Abrir Google Sheet](https://docs.google.com/spreadsheets/d/190SePJxAYEyfjbMa-EEx-eYY0Hihi8GmKUZHzk5SOX8/edit?usp=sharing)")
