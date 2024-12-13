@@ -9,8 +9,11 @@ import streamlit as st
 # Acceder a las credenciales desde Streamlit Secrets Manager
 credentials_dict = st.secrets["google_service_account"]
 
-# Crear credenciales a partir del diccionario
-credentials = Credentials.from_service_account_info(credentials_dict)
+# Definir el alcance necesario
+SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+
+# Crear credenciales a partir del diccionario y agregar el alcance
+credentials = Credentials.from_service_account_info(credentials_dict, scopes=SCOPES)
 
 # Verificar si las credenciales son válidas, si no, renovarlas
 if credentials.expired and credentials.refresh_token:
@@ -19,6 +22,7 @@ if credentials.expired and credentials.refresh_token:
 # Autenticación con Google Sheets
 import gspread
 gc = gspread.authorize(credentials)
+
 
 # ID de tu Google Sheet
 SPREADSHEET_ID = "190SePJxAYEyfjbMa-EEx-eYY0Hihi8GmKUZHzk5SOX8"
