@@ -2,7 +2,20 @@ import streamlit as st
 import pandas as pd
 import gspread
 from google.oauth2.service_account import Credentials
+from oauth2client.service_account import ServiceAccountCredentials
+import gspread
 
+# Define the scope
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+
+# Authorize the credentials
+creds = ServiceAccountCredentials.from_json_keyfile_name('path/to/your/credentials.json', scope)
+
+# Initialize the client
+client = gspread.authorize(creds)
+
+# Open the spreadsheet by ID
+spreadsheet = client.open_by_key('your_spreadsheet_id')
 # Acceder a las credenciales desde Streamlit Secrets Manager
 credentials_dict = st.secrets["google_service_account"]
 
