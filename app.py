@@ -8,7 +8,7 @@ from google.oauth2.service_account import Credentials
 # Configurar autenticación con Google Sheets
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 #CREDENTIALS_FILE = "credentials.json"  # Archivo de credenciales de Google Cloud
-#SPREADSHEET_TITLE = "prediccion"  # Título del Google Sheet
+SPREADSHEET_TITLE = "prediccion"  # Título del Google Sheet
 #from google.oauth2.service_account import Credentials
 #import gspread
 
