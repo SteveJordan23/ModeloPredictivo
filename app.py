@@ -49,9 +49,9 @@ logo_path = "unitec.png"  # Asegúrate de usar el nombre exacto del archivo
 try:
     logo = Image.open(logo_path)
     st.image(logo, use_column_width=True)
+    st.image(logo, use_container_width=True)
 except FileNotFoundError:
     st.warning("No se encontró el logo de Unitec. Asegúrate de que el archivo esté en el directorio correcto.")
-st.image(logo, width=200, caption="Unitec")
 
 st.title("Evaluación de Clientes Modelo de Predicción - Grupo 5")
 
