@@ -92,40 +92,41 @@ if uploaded_file is not None:
         if not all(col in new_data.columns for col in columns_to_restore):
             st.error("Error: Faltan columnas necesarias en los datos subidos.")
         else:
-            # Restaurar las columnas eliminadas antes del preprocesamiento
-            removed_columns = new_data[columns_to_restore]
-
-            # Preprocesar los datos
-            new_data = new_data.drop(columns=columns_to_restore, axis=1, errors="ignore")
-            X_new_processed = preprocessor.transform(new_data)
-
-            # Hacer predicciones
-            predictions = model.predict(X_new_processed)
-
-            # Agregar predicciones al DataFrame original
-            new_data["Predictions"] = predictions
-            final_data = pd.concat([removed_columns, new_data], axis=1)
-
-            # Mostrar las predicciones en la aplicación
-            st.header("Resultados de las Predicciones")
-            st.write(final_data)
-
-            # Guardar los resultados en Google Sheets
             try:
-                st.header("Guardando en Google Sheets...")
+                # Restaurar las columnas eliminadas antes del preprocesamiento
+                removed_columns = new_data[columns_to_restore]
+    
+                # Preprocesar los datos
+                new_data = new_data.drop(columns=columns_to_restore, axis=1, errors="ignore")
+                X_new_processed = preprocessor.transform(new_data)
+    
+                # Hacer predicciones
+                predictions = model.predict(X_new_processed)
+    
+                # Agregar predicciones al DataFrame original
+                new_data["Predictions"] = predictions
+                final_data = pd.concat([removed_columns, new_data], axis=1)
+    
+                # Mostrar las predicciones en la aplicación
+                st.header("Resultados de las Predicciones")
+                st.write(final_data)
+    
+                # Guardar los resultados en Google Sheets
                 try:
-                    # Si el Google Sheet ya existe, lo abrimos
-                    spreadsheet = gc.open(SPREADSHEET_TITLE)
-                    worksheet = spreadsheet.sheet1
-                except gspread.exceptions.SpreadsheetNotFound:
-                    # Si no existe, lo creamos
-                    spreadsheet = gc.create(SPREADSHEET_TITLE)
-                    worksheet = spreadsheet.get_worksheet(0)
-
-                # Cargar los datos a la hoja de cálculo
-                set_with_dataframe(worksheet, final_data)
-                st.success(f"Predicciones guardadas en Google Sheets: {SPREADSHEET_TITLE}")
-                st.write(f"[Abrir Google Sheet](https://docs.google.com/spreadsheets/d/{spreadsheet.id})")
+                    st.header("Guardando en Google Sheets...")
+                    try:
+                        # Si el Google Sheet ya existe, lo abrimos
+                        spreadsheet = gc.open(SPREADSHEET_TITLE)
+                        worksheet = spreadsheet.sheet1
+                    except gspread.exceptions.SpreadsheetNotFound:
+                        # Si no existe, lo creamos
+                        spreadsheet = gc.create(SPREADSHEET_TITLE)
+                        worksheet = spreadsheet.get_worksheet(0)
+    
+                    # Cargar los datos a la hoja de cálculo
+                    set_with_dataframe(worksheet, final_data)
+                    st.success(f"Predicciones guardadas en Google Sheets: {SPREADSHEET_TITLE}")
+                    st.write(f"[Abrir Google Sheet](https://docs.google.com/spreadsheets/d/{spreadsheet.id})")
             except Exception as e:
                 st.error(f"Error al guardar en Google Sheets: {e}")
 
