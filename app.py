@@ -148,7 +148,7 @@ if uploaded_file is not None:
                         
                     </script>
                     """,
-                    unsafe_allow_html=True
+                    unsafe_allow_html=False
                 )
 
             # Enlace directo al reporte de Looker Studio
@@ -160,17 +160,4 @@ if uploaded_file is not None:
                 """
             )
 
-            # Incrustar el reporte de Looker Studio
-st.header("Reporte en Looker Studio")
-st.markdown(
-    """
-    <iframe 
-        width="100%" 
-        height="600" 
-        src="https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951t" 
-        frameborder="0" 
-        allowfullscreen>
-    </iframe>
-    """,
-    unsafe_allow_html=True
-)
+
