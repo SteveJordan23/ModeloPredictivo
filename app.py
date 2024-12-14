@@ -7,16 +7,37 @@ from google.oauth2.service_account import Credentials
 
 # Configurar autenticación con Google Sheets
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
-CREDENTIALS_FILE = "credentials.json"  # Archivo de credenciales de Google Cloud
-SPREADSHEET_TITLE = "prediccion"  # Título del Google Sheet
+#CREDENTIALS_FILE = "credentials.json"  # Archivo de credenciales de Google Cloud
+#SPREADSHEET_TITLE = "prediccion"  # Título del Google Sheet
+#from google.oauth2.service_account import Credentials
+#import gspread
 
+# Configuración de credenciales desde Streamlit Secrets Manager o archivo JSON
+#SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+
+try:
+    # Opción 1: Usando Streamlit Secrets
+    if "google_service_account" in st.secrets:
+        credentials_dict = st.secrets["google_service_account"]
+        credentials = Credentials.from_service_account_info(credentials_dict, scopes=SCOPES)
+    # Opción 2: Usando un archivo JSON (si no usas Streamlit Secrets Manager)
+    else:
+        CREDENTIALS_FILE = "credentials.json"  # Archivo de credenciales
+        credentials = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
+
+    # Autorizar gspread con las credenciales
+    gc = gspread.authorize(credentials)
+
+except Exception as e:
+    st.error(f"Error en la autenticación de Google Sheets: {e}")
+    gc = None  # Asegúrate de que gc sea None si hay un problema
 # Cargar credenciales para Google Sheets
 #credentials = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
 #gc = gspread.authorize(credentials)
 
 # Cargar credenciales desde Streamlit Secrets
-credentials_dict = st.secrets["google_service_account"]
-credentials = Credentials.from_service_account_info(credentials_dict)
+#credentials_dict = st.secrets["google_service_account"]
+#credentials = Credentials.from_service_account_info(credentials_dict)
 # Configurar título de la aplicación
 st.title("Predicción de Churn - Aplicación Web")
 
