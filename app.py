@@ -161,7 +161,7 @@ if model_executed:
         """,
         unsafe_allow_html=True
     )
-st.markdown(LOOKER_STUDIO_URL, unsafe_allow_html=True) 
+    st.markdown(LOOKER_STUDIO_URL, unsafe_allow_html=True) 
   #  st.markdown(
    #     """
     #    Haz clic en el enlace para acceder al reporte de Looker Studio:
