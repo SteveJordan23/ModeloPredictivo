@@ -53,6 +53,9 @@ try:
 except FileNotFoundError:
     st.warning("No se encontró el logo de Unitec. Asegúrate de que el archivo esté en el directorio correcto.")
 
+# Inicializar la variable `model_executed` al principio
+model_executed = False
+
 st.title("Evaluación de Clientes Modelo de Predicción - Grupo 5")
 
 # Cargar el modelo y el preprocesador
@@ -134,7 +137,10 @@ if uploaded_file is not None:
                 file_name="predicciones.csv",
                 mime="text/csv"
             )
-
+            # Marcar el modelo como ejecutado
+            model_executed = True
+        except Exception as e:
+            st.error(f"Ocurrió un error durante la predicción: {e}")
 # Mostrar el reporte de Looker Studio solo si el modelo fue ejecutado
 if model_executed:          
     st.header("Reporte de Resultados")
