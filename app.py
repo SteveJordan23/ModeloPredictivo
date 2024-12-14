@@ -147,14 +147,18 @@ if uploaded_file is not None:
 # Enlace al reporte de Looker Studio
 LOOKER_STUDIO_URL = "https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951"
 
-# Abrir automáticamente el enlace al reporte
+# Incrustar el reporte de Looker Studio
+st.header("Reporte en Looker Studio")
 st.markdown(
-    f"""
-    <script type="text/javascript">
-        window.open("{LOOKER_STUDIO_URL}", "_blank");
-    </script>
+    """
+    <iframe 
+        width="100%" 
+        height="600" 
+        src="<iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951/page/MjRZE" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>" 
+        frameborder="0" 
+        allowfullscreen>
+    </iframe>
     """,
     unsafe_allow_html=True
 )
-
 
