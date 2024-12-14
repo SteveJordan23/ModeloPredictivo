@@ -144,4 +144,17 @@ if uploaded_file is not None:
                 """
             )
 
+# Enlace al reporte de Looker Studio
+LOOKER_STUDIO_URL = "https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951/page/MjRZE/edit"
+
+# Abrir automáticamente el enlace al reporte
+st.markdown(
+    f"""
+    <script type="text/javascript">
+        window.open("{LOOKER_STUDIO_URL}", "_blank");
+    </script>
+    """,
+    unsafe_allow_html=True
+)
+
 
