@@ -157,7 +157,7 @@ st.markdown(
 
 
   # Agregar un enlace al reporte de Looker Studio
-        st.header("Reporte de Resultados")
+st.header("Reporte de Resultados")
             st.markdown(
                 """
                 Haz clic en el enlace para acceder al reporte de Looker Studio:
