@@ -92,8 +92,8 @@ if uploaded_file is not None:
         if not all(col in new_data.columns for col in columns_to_restore):
             st.error("Error: Faltan columnas necesarias en los datos subidos.")
         else:
-            try:
-                # Restaurar las columnas eliminadas antes del preprocesamiento
+            try: 
+            # Restaurar las columnas eliminadas antes del preprocesamiento
                 removed_columns = new_data[columns_to_restore]
     
                 # Preprocesar los datos
@@ -127,21 +127,21 @@ if uploaded_file is not None:
                     set_with_dataframe(worksheet, final_data)
                     st.success(f"Predicciones guardadas en Google Sheets: {SPREADSHEET_TITLE}")
                     st.write(f"[Abrir Google Sheet](https://docs.google.com/spreadsheets/d/{spreadsheet.id})")
+                except Exception as e:
+                    st.error(f"Error al guardar en Google Sheets: {e}")
+    
+                # Descargar resultados como archivo CSV
+                csv_data = final_data.to_csv(index=False)
+                st.download_button(
+                    label="Descargar Predicciones como CSV",
+                    data=csv_data,
+                    file_name="predicciones.csv",
+                    mime="text/csv"
+                )
+                # Marcar el modelo como ejecutado
+                model_executed = True
             except Exception as e:
-                st.error(f"Error al guardar en Google Sheets: {e}")
-
-            # Descargar resultados como archivo CSV
-            csv_data = final_data.to_csv(index=False)
-            st.download_button(
-                label="Descargar Predicciones como CSV",
-                data=csv_data,
-                file_name="predicciones.csv",
-                mime="text/csv"
-            )
-            # Marcar el modelo como ejecutado
-            model_executed = True
-        except Exception as e:
-            st.error(f"Ocurrió un error durante la predicción: {e}")
+                st.error(f"Ocurrió un error durante la predicción: {e}")
 # Mostrar el reporte de Looker Studio solo si el modelo fue ejecutado
 if model_executed:          
     st.header("Reporte de Resultados")
