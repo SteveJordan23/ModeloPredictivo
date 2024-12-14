@@ -11,9 +11,12 @@ CREDENTIALS_FILE = "credentials.json"  # Archivo de credenciales de Google Cloud
 SPREADSHEET_TITLE = "prediccion"  # Título del Google Sheet
 
 # Cargar credenciales para Google Sheets
-credentials = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
-gc = gspread.authorize(credentials)
+#credentials = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
+#gc = gspread.authorize(credentials)
 
+# Cargar credenciales desde Streamlit Secrets
+credentials_dict = st.secrets["google_service_account"]
+credentials = Credentials.from_service_account_info(credentials_dict)
 # Configurar título de la aplicación
 st.title("Predicción de Churn - Aplicación Web")
 
