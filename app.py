@@ -165,8 +165,8 @@ if model_executed:
     st.markdown(
         """
        Haz clic en el enlace para acceder al reporte de Looker Studio:
-        [Ver Reporte](https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951)
+        [Ver Reporte](LOOKER_STUDIO_URL)
         """
     )
-    st.markdown(unsafe_allow_html=True) 
+   # st.markdown(LOOKER_STUDIO_URL,unsafe_allow_html=True) 
 
