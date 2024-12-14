@@ -135,26 +135,17 @@ if uploaded_file is not None:
                 mime="text/csv"
             )
 
-            # Incrustar el reporte de Looker Studio
-            st.header("Reporte en Looker Studio")
-            st.markdown(
-                """
-                <iframe 
-                    width="100%" 
-                    height="600" 
-                    src="https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951/page/MjRZE/edit" 
-                    frameborder="0" 
-                    allowfullscreen>
-                </iframe>
-                """,
-                unsafe_allow_html=True
-            )
+            # Agregar un enlace al reporte de Looker Studio
+            st.header("Reporte de Resultados")
+            st.write("Haz clic en el botón de abajo para abrir el reporte en Looker Studio:")
             
-            # Enlace directo al reporte de Looker Studio
-            st.header("Reporte en Looker Studio")
-            st.markdown(
-                """
-                Haz clic en el enlace para acceder al reporte de Looker Studio:
-                [Ver Reporte](https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951/page/MjRZE/edit)
-                """
-            )
+            # Botón que abre el reporte en una nueva pestaña
+            if st.button("Abrir Reporte de Looker Studio"):
+                st.markdown(
+                    """
+                    <script type="text/javascript">
+                        window.open("https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951/page/MjRZE/edit", "_blank");
+                    </script>
+                    """,
+                    unsafe_allow_html=True
+                )
