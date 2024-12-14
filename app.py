@@ -162,3 +162,17 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Incrustar el iframe correctamente
+LOOKER_STUDIO_URL = "<iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951/page/MjRZE" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>"
+
+st.markdown(
+    f"""
+    <iframe 
+        src="{LOOKER_STUDIO_URL}" 
+        width="100%" 
+        height="600" 
+        style="border:none;">
+    </iframe>
+    """,
+    unsafe_allow_html=True
+
