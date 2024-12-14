@@ -144,8 +144,33 @@ if uploaded_file is not None:
                 st.markdown(
                     """
                     <script type="text/javascript">
-                        window.open("https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951/page/MjRZE/edit", "_blank");
+                        #window.open("https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951");
+                        
                     </script>
                     """,
                     unsafe_allow_html=True
                 )
+
+            # Enlace directo al reporte de Looker Studio
+            st.header("Reporte en Looker Studio")
+            st.markdown(
+                """
+                Haz clic en el enlace para acceder al reporte de Looker Studio:
+                [Ver Reporte](https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951)
+                """
+            )
+
+            # Incrustar el reporte de Looker Studio
+st.header("Reporte en Looker Studio")
+st.markdown(
+    """
+    <iframe 
+        width="100%" 
+        height="600" 
+        src="https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951t" 
+        frameborder="0" 
+        allowfullscreen>
+    </iframe>
+    """,
+    unsafe_allow_html=True
+)
