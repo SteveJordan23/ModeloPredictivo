@@ -145,7 +145,7 @@ if uploaded_file is not None:
             )
 
 # Enlace al reporte de Looker Studio
-LOOKER_STUDIO_URL = "https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951/page/MjRZE/edit"
+LOOKER_STUDIO_URL = "https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951"
 
 # Abrir automáticamente el enlace al reporte
 st.markdown(
