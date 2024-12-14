@@ -164,8 +164,9 @@ if model_executed:
 st.markdown(LOOKER_STUDIO_URL, unsafe_allow_html=True) 
 
 if model_executed:   
-    # Enlace al reporte de Looker Studio
-        
+
+    # Incrustar el iframe correctamente
+    LOOKER_STUDIO_URL = 'https://lookerstudio.google.com/embed/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951/page/MjRZE'
     st.markdown(
         """
         Haz clic en el enlace para acceder al reporte de Looker Studio:
