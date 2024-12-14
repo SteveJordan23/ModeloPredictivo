@@ -142,12 +142,11 @@ if uploaded_file is not None:
                 model_executed = True
             except Exception as e:
                 st.error(f"Ocurrió un error durante la predicción: {e}")
+                
 # Mostrar el reporte de Looker Studio solo si el modelo fue ejecutado
 if model_executed:          
     st.header("Reporte de Resultados")
-    # Enlace al reporte de Looker Studio
-    LOOKER_STUDIO_URL = "https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951"
-    
+   
     # Incrustar el iframe correctamente
     LOOKER_STUDIO_URL = 'https://lookerstudio.google.com/embed/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951/page/MjRZE'
     #st.markdown(LOOKER_STUDIO_URL, unsafe_allow_html=True)
@@ -162,13 +161,16 @@ if model_executed:
         """,
         unsafe_allow_html=True
     )
-    st.markdown(LOOKER_STUDIO_URL, unsafe_allow_html=True)
+   
 
-  # Agregar un enlace al reporte de Looker Studio
 
+# Enlace al reporte de Looker Studio
+LOOKER_STUDIO_URL = "https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951"
+    
 st.markdown(
     """
     Haz clic en el enlace para acceder al reporte de Looker Studio:
     [Ver Reporte](https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951)
     """
 )
+st.markdown(LOOKER_STUDIO_URL, unsafe_allow_html=True)
