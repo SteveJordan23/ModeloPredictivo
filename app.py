@@ -161,11 +161,10 @@ if model_executed:
         """,
         unsafe_allow_html=True
     )
-   
+st.markdown(LOOKER_STUDIO_URL, unsafe_allow_html=True) 
 
-
+if model_executed:   
 # Enlace al reporte de Looker Studio
-LOOKER_STUDIO_URL = "https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951"
     
 st.markdown(
     """
