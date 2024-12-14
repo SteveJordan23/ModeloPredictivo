@@ -144,9 +144,6 @@ if uploaded_file is not None:
                 st.markdown(
                     """
                     <script type="text/javascript">
-                        #window.open("https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951");
-                     """
-                    <script type="text/javascript">
                     window.open("https://lookerstudio.google.com/reporting/21028ef0-7f4c-4de2-bd41-97238c0e7951", "_blank");
                     </script>
                     """,
