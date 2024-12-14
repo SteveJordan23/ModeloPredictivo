@@ -2,8 +2,12 @@ import streamlit as st
 import pandas as pd
 import joblib
 import gspread
+import streamlit as st
+from PIL import Image
+
 from gspread_dataframe import set_with_dataframe
 from google.oauth2.service_account import Credentials
+
 
 # Configurar autenticación con Google Sheets
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
@@ -39,7 +43,17 @@ except Exception as e:
 #credentials_dict = st.secrets["google_service_account"]
 #credentials = Credentials.from_service_account_info(credentials_dict)
 # Configurar título de la aplicación
-st.title("Predicción de Churn - Aplicación Web")
+
+# Cargar y mostrar el logo de Unitec
+logo_path = "unitec.png"  # Asegúrate de usar el nombre exacto del archivo
+try:
+    logo = Image.open(logo_path)
+    st.image(logo, use_column_width=True)
+except FileNotFoundError:
+    st.warning("No se encontró el logo de Unitec. Asegúrate de que el archivo esté en el directorio correcto.")
+
+
+st.title("Evaluación de Clientes Modelo de Predicción - Grupo 5")
 
 # Cargar el modelo y el preprocesador
 @st.cache_resource
